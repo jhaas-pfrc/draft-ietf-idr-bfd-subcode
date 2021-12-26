@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="US-ASCII"?>
+<!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
+<!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
+<!ENTITY RFC4271 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4271.xml">
+<!ENTITY RFC4273 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4273.xml">
+<!ENTITY RFC4486 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4486.xml">
+<!ENTITY RFC5880 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5880.xml">
+<!ENTITY RFC5882 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5882.xml">
+<!ENTITY RFC8174 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8174.xml">
+<!ENTITY RFC8538 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8538.xml">
+]>
+<?xml-stylesheet type="text/xsl" href="rfc2629.xslt" ?>
+<!-- used by XSLT processors -->
+<!-- OPTIONS, known as processing instructions (PIs) go here. -->
+<!-- For a complete list and description of PIs,
+     please see http://xml.resource.org/authoring/README.html. -->
+<!-- Below are generally applicable PIs that most I-Ds might want to use. -->
+<?rfc strict="yes" ?>
+<!-- give errors regarding ID-nits and DTD validation -->
+<!-- control the table of contents (ToC): -->
+<?rfc toc="yes"?>
+<!-- generate a ToC -->
+<?rfc tocdepth="3"?>
+<!-- the number of levels of subsections in ToC. default: 3 -->
+<!-- control references: -->
+<?rfc symrefs="yes"?>
+<!-- use symbolic references tags, i.e, [RFC2119] instead of [1] -->
+<?rfc sortrefs="yes" ?>
+<!-- sort the reference entries alphabetically -->
+<!-- control vertical white space: 
+     (using these PIs as follows is recommended by the RFC Editor) -->
+<?rfc compact="yes" ?>
+<!-- do not start each main section on a new page -->
+<?rfc subcompact="no" ?>
+<!-- keep one blank line between list items -->
+<!-- end of popular PIs -->
+<rfc category="std" docName="draft-haas-idr-bfd-subcode" ipr="trust200902">
+  <front>
+    <title>BGP Cease Notification Subcode For BFD</title>
+    <author fullname="Jeffrey Haas" initials="J" surname="Haas">
+      <organization>Juniper Networks</organization>
+      <address>
+        <email>jhaas@juniper.net</email>
+      </address>
+    </author>
+    <date year="2021"/>
+    <area/>
+    <workgroup>Inter-Domain Routing</workgroup>
+    <!-- <keyword/> -->
+    <abstract>
+      <t>
+        The Bidirectional Forwarding Detection protocol (BFD) is used to detect
+        loss of connectivity between two forwarding elements, typically with
+        low latency.  BFD is leveraged by routing protocols, including the
+        Border Gateway Protocol (BGP), to use that detection of loss of
+        connectivity to bring down the protocol connections faster than the
+        native protocol timers.
+      </t>
+      <t>
+        This document defines a Subcode for the BGP Cease NOTIFICATION message
+        for when a BGP connection is being closed due to a BFD session going
+        down.
+      </t>
+    </abstract>
+    <note title="Requirements Language">
+      <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+      "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
+      document are to be interpreted as described in BCP 14 <xref target="RFC2119"/> 
+      <xref target="RFC8174"/> when, and only when, they appear in all capitals, as shown here.</t>
+    </note>
+  </front>
+  <middle>
+    <section title="Introduction">
+      <t>
+        The Bidirectional Forwarding Detection protocol (BFD) <xref
+        target="RFC5880"/> is used to detect loss of connectivity between two
+        forwarding elements, typically with low latency.  BFD is utilized as a
+        service for various clients, including routing protocols, to provide an
+        advisory mechanism for those clients to take action when a BFD session
+        goes down <xref target="RFC5882"/>.  This is typically used by the
+        clients to take faster action in terminating their connections than the
+        native protocol timers might allow.
+      </t>
+      <t>
+        The Border Gateway Protocol, Version 4 (BGP) <xref target="RFC4271"/>
+        uses a Hold Timer to terminate sessions when the implementation does
+        not receive a BGP message within the negotiated Hold Time interval.
+        The minimum Hold Time interval supported by the protocol is three
+        seconds. The Hold Timer may be optionally negotiated to being disabled
+        with a Hold Time interval of zero.
+      </t>
+      <t>
+        If a BGP implementation desires to have its sessions terminate faster
+        than the supported BGP Hold Timer can accommodate upon loss of
+        connectivity, BFD is used to supply that faster detection.  When the
+        BFD session goes Down, the BGP implementation terminates the session.
+        BGP will send a NOTIFICATION message, if possible, and then close the
+        TCP connection for the session.
+      </t>
+    </section>
+    <section title="BFD Cease NOTIFICATION Subcode">
+      <t>
+        The value (TBD) has been allocated by IANA for the "BFD Down" Cease
+        NOTIFICATION message Subcode.
+      </t>
+      <t>
+        When a BGP session is terminated due to a BFD session going into the
+        Down state, the BGP Speaker SHOULD send a NOTIFICATION message with the
+        Error Code Cease and the Error Subcode "BFD Down".
+      </t>
+    </section>
+    <section title="Operational Considerations">
+      <t>
+        A BFD session may go Down when there is only a partial loss of
+        connectivity between two BGP Speakers.  Operators using BFD for their
+        BGP sessions make choices for what BFD timers are used based on a
+        variety of inputs for stability vs. fast failure depending on the role
+        BGP is playing for the deployment.
+      </t>
+      <t>
+        In the event of a BGP session being terminated due to a BFD Down event
+        from partial loss of connectivity as detected by BFD, the remote BGP
+        Speaker might be able to receive the BGP NOTIFICATION message with the
+        BFD Down Subcode.  The receiving BGP Speaker will then have an
+        understanding that the session is being terminated because of a
+        BFD-detected issue and not an issue with the BGP implementation.
+      </t>
+      <t>
+        When there is a total loss of connectivity between two BGP Speakers, it
+        may not be possible for the NOTIFICATION message to have been sent.
+        Even so, BGP implementations may provide this reason as part of their
+        operational state; e.g. bgpPeerLastError in the BGP MIB.
+        <xref target="RFC4273"/>.
+      </t>
+      <t>
+        When the procedures in <xref target="RFC8538"/> for sending a
+        NOTIFICATION message with a Cease Code and Hard Reset Subcode, and the
+        session is being terminated because BFD has gone Down, the BFD Down
+        Subcode SHOULD be encapsulated in the Hard Reset's data portion of the
+        NOTIFICATION message.
+      </t>
+    </section>
+    <section title="Security Considerations">
+      <t>
+        This document introduces no additional BGP security considerations.
+      </t>
+    </section>
+    <section title="IANA Considerations">
+      <t>
+        IANA is requested to allocate a new value from the BGP Cease
+        NOTIFICATION message subcodes registry with the Name "BFD Down", and a
+        Reference of this document.
+      </t>
+    </section>
+    <section title="Acknowledgments">
+      <t>TBD</t>
+    </section>
+  </middle>
+  <back>
+    <references title="Normative References">
+      &RFC2119;
+      &RFC4271;
+      &RFC5880;
+      &RFC8174;
+    </references>
+    <references title="Informative References">
+      &RFC4273;
+      &RFC4486;
+      &RFC5882;
+      &RFC8538;
+    </references>
+  </back>
+</rfc>
