@@ -30,7 +30,7 @@
 <?rfc subcompact="no" ?>
 <!-- keep one blank line between list items -->
 <!-- end of popular PIs -->
-<rfc xmlns:xi="http://www.w3.org/2001/XInclude" category="std" docName="draft-haas-idr-bfd-subcode-00" ipr="trust200902" obsoletes="" updates="" submissionType="IETF" xml:lang="en" tocInclude="true" tocDepth="3" symRefs="true" sortRefs="true" version="3">
+<rfc xmlns:xi="http://www.w3.org/2001/XInclude" category="std" docName="draft-haas-idr-bfd-subcode-01" ipr="trust200902" obsoletes="" updates="" submissionType="IETF" xml:lang="en" tocInclude="true" tocDepth="3" symRefs="true" sortRefs="true" version="3">
   <!-- xml2rfc v2v3 conversion 3.12.0 -->
   <front>
     <title>BGP Cease Notification Subcode For BFD</title>
@@ -82,17 +82,17 @@
       </t>
       <t>
         The Border Gateway Protocol, Version 4 (BGP) <xref target="RFC4271" format="default"/>
-        uses a Hold Timer to terminate sessions when the implementation does
+        terminates its sessions upon Hold Timer expiration when the speaker does
         not receive a BGP message within the negotiated Hold Time interval.
         The minimum Hold Time interval supported by the protocol is three
         seconds. The Hold Timer may be optionally negotiated to being disabled
         with a Hold Time interval of zero.
       </t>
       <t>
-        If a BGP implementation desires to have its sessions terminate faster
+        If a BGP speaker desires to have its sessions terminate faster
         than the supported BGP Hold Timer can accommodate upon loss of
         connectivity, BFD is used to supply that faster detection.  When the
-        BFD session goes Down, the BGP implementation terminates the session.
+        BFD session state changes to Down, the BGP speaker terminates the session.
         BGP will send a NOTIFICATION message, if possible, and then close the
         TCP connection for the session.
       </t>
@@ -124,12 +124,12 @@
         Speaker might be able to receive the BGP NOTIFICATION message with the
         BFD Down Subcode.  The receiving BGP Speaker will then have an
         understanding that the session is being terminated because of a
-        BFD-detected issue and not an issue with the BGP implementation.
+        BFD-detected issue and not an issue with the BGP speaker.
       </t>
       <t>
         When there is a total loss of connectivity between two BGP Speakers, it
         may not be possible for the NOTIFICATION message to have been sent.
-        Even so, BGP implementations may provide this reason as part of their
+        Even so, BGP speakers may provide this reason as part of their
         operational state; e.g. bgpPeerLastError in the BGP MIB.
         <xref target="RFC4273" format="default"/>.
       </t>
@@ -157,7 +157,7 @@
     </section>
     <section numbered="true" toc="default">
       <name>Acknowledgments</name>
-      <t>TBD</t>
+      <t>Thanks to Jeff Tantsura for his comments on the draft.</t>
     </section>
   </middle>
   <back>
