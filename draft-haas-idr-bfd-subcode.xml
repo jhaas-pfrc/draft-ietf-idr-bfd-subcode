@@ -48,7 +48,7 @@
     <abstract>
       <t>
         The Bidirectional Forwarding Detection protocol (BFD) is used to detect
-        loss of connectivity between two forwarding elements, typically with
+        loss of connectivity between two forwarding engines, typically with
         low latency.  BFD is leveraged by routing protocols, including the
         Border Gateway Protocol (BGP), to use that detection of loss of
         connectivity to bring down the protocol connections faster than the
@@ -73,7 +73,7 @@
       <name>Introduction</name>
       <t>
         The Bidirectional Forwarding Detection protocol (BFD) <xref target="RFC5880" format="default"/> is used to detect loss of connectivity between two
-        forwarding elements, typically with low latency.  BFD is utilized as a
+        forwarding engines, typically with low latency.  BFD is utilized as a
         service for various clients, including routing protocols, to provide an
         advisory mechanism for those clients to take action when a BFD session
         goes down <xref target="RFC5882" format="default"/>.  This is typically used by the
