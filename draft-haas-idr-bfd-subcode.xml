@@ -129,7 +129,7 @@
       <t>
         When there is a total loss of connectivity between two BGP Speakers, it
         may not be possible for the NOTIFICATION message to have been sent.
-        Even so, BGP speakers may provide this reason as part of their
+        Even so, BGP speakers SHOULD provide this reason as part of their
         operational state; e.g. bgpPeerLastError in the BGP MIB.
         <xref target="RFC4273" format="default"/>.
       </t>
@@ -157,7 +157,7 @@
     </section>
     <section numbered="true" toc="default">
       <name>Acknowledgments</name>
-      <t>Thanks to Jeff Tantsura for his comments on the draft.</t>
+      <t>Thanks to Jeff Tantsura, and Dale Carder for their comments on the draft.</t>
     </section>
   </middle>
   <back>
