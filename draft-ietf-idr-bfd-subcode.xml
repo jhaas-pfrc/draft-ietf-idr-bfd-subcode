@@ -30,11 +30,11 @@
 <?rfc subcompact="no" ?>
 <!-- keep one blank line between list items -->
 <!-- end of popular PIs -->
-<rfc xmlns:xi="http://www.w3.org/2001/XInclude" category="std" docName="draft-ietf-idr-bfd-subcode-01" ipr="trust200902" obsoletes="" updates="" submissionType="IETF" xml:lang="en" tocInclude="true" tocDepth="3" symRefs="true" sortRefs="true" version="3">
+<rfc xmlns:xi="http://www.w3.org/2001/XInclude" category="std" docName="draft-ietf-idr-bfd-subcode-02" ipr="trust200902" obsoletes="" updates="" submissionType="IETF" xml:lang="en" tocInclude="true" tocDepth="3" symRefs="true" sortRefs="true" version="3">
   <!-- xml2rfc v2v3 conversion 3.12.0 -->
   <front>
     <title>BGP Cease Notification Subcode For BFD</title>
-    <seriesInfo name="Internet-Draft" value="draft-ietf-idr-bfd-subcode-01"/>
+    <seriesInfo name="Internet-Draft" value="draft-ietf-idr-bfd-subcode-02"/>
     <author fullname="Jeffrey Haas" initials="J" surname="Haas">
       <organization>Juniper Networks</organization>
       <address>
@@ -100,7 +100,7 @@
     <section numbered="true" toc="default">
       <name>BFD Cease NOTIFICATION Subcode</name>
       <t>
-        The value (TBD) has been allocated by IANA for the "BFD Down" Cease
+        The value 10 has been allocated by IANA for the "BFD Down" Cease
         NOTIFICATION message Subcode.
       </t>
       <t>
@@ -150,7 +150,7 @@
     <section numbered="true" toc="default">
       <name>IANA Considerations</name>
       <t>
-        IANA is requested to allocate a new value from the BGP Cease
+        IANA has assigned the value 10 from the BGP Cease
         NOTIFICATION message subcodes registry with the Name "BFD Down", and a
         Reference of this document.
       </t>
