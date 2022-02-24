@@ -30,11 +30,11 @@
 <?rfc subcompact="no" ?>
 <!-- keep one blank line between list items -->
 <!-- end of popular PIs -->
-<rfc xmlns:xi="http://www.w3.org/2001/XInclude" category="std" docName="draft-haas-idr-bfd-subcode-01" ipr="trust200902" obsoletes="" updates="" submissionType="IETF" xml:lang="en" tocInclude="true" tocDepth="3" symRefs="true" sortRefs="true" version="3">
+<rfc xmlns:xi="http://www.w3.org/2001/XInclude" category="std" docName="draft-ietf-idr-bfd-subcode-01" ipr="trust200902" obsoletes="" updates="" submissionType="IETF" xml:lang="en" tocInclude="true" tocDepth="3" symRefs="true" sortRefs="true" version="3">
   <!-- xml2rfc v2v3 conversion 3.12.0 -->
   <front>
     <title>BGP Cease Notification Subcode For BFD</title>
-    <seriesInfo name="Internet-Draft" value="draft-haas-idr-bfd-subcode-00"/>
+    <seriesInfo name="Internet-Draft" value="draft-ietf-idr-bfd-subcode-01"/>
     <author fullname="Jeffrey Haas" initials="J" surname="Haas">
       <organization>Juniper Networks</organization>
       <address>
@@ -158,6 +158,11 @@
     <section numbered="true" toc="default">
       <name>Acknowledgments</name>
       <t>Thanks to Jeff Tantsura, and Dale Carder for their comments on the draft.</t>
+      <t>Bruno Rijsman had a substantively similar proposal to this document in
+         2006; draft-rijsman-bfd-down-subcode.  That draft did not progress in IDR
+         at that time.  The author of this draft was unaware of Bruno's prior work
+         when creating this proposal.
+       </t>
     </section>
   </middle>
   <back>
