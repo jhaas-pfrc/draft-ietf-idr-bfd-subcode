@@ -4,8 +4,8 @@
 
 Inter-Domain Routing                                             J. Haas
 Internet-Draft                                          Juniper Networks
-Intended status: Standards Track                          5 October 2022
-Expires: 8 April 2023
+Intended status: Standards Track                         13 October 2022
+Expires: 16 April 2023
 
 
 A BGP Cease Notification Subcode For Bidirectional Forwarding Detection
@@ -47,13 +47,13 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 April 2023.
+   This Internet-Draft will expire on 16 April 2023.
 
 
 
 
 
-Haas                      Expires 8 April 2023                  [Page 1]
+Haas                      Expires 16 April 2023                 [Page 1]
 
 Internet-Draft   BGP Cease Notification Subcode for BFD     October 2022
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Haas                      Expires 8 April 2023                  [Page 2]
+Haas                      Expires 16 April 2023                 [Page 2]
 
 Internet-Draft   BGP Cease Notification Subcode for BFD     October 2022
 
@@ -165,7 +165,7 @@ Internet-Draft   BGP Cease Notification Subcode for BFD     October 2022
 
 
 
-Haas                      Expires 8 April 2023                  [Page 3]
+Haas                      Expires 16 April 2023                 [Page 3]
 
 Internet-Draft   BGP Cease Notification Subcode for BFD     October 2022
 
@@ -221,7 +221,7 @@ Internet-Draft   BGP Cease Notification Subcode for BFD     October 2022
 
 
 
-Haas                      Expires 8 April 2023                  [Page 4]
+Haas                      Expires 16 April 2023                 [Page 4]
 
 Internet-Draft   BGP Cease Notification Subcode for BFD     October 2022
 
@@ -277,4 +277,4 @@ Author's Address
 
 
 
-Haas                      Expires 8 April 2023                  [Page 5]
+Haas                      Expires 16 April 2023                 [Page 5]
