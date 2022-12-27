@@ -96,7 +96,7 @@
         to supply that faster detection.  When the BFD session state
         changes to Down, the BGP speaker terminates the connection with a
         Cease NOTIFICATION message sent to the neighbor, if possible, and then closes
-        the TCP connection for the connection.
+        the TCP connection for the session.
       </t>
       <t>
 	This document defines a subcode, "BFD Down", to be sent with the Cease
