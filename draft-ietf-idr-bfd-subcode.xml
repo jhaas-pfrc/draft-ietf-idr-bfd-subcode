@@ -47,7 +47,7 @@
     <!-- <keyword/> -->
     <abstract>
       <t>
-        The Bidirectional Forwarding Detection (BFD) protocol is used to detect
+        The Bidirectional Forwarding Detection (BFD) protocol [RFC 5880] is used to detect
         loss of connectivity between two forwarding engines, typically with
         low latency.  BFD is leveraged by routing protocols, including the
         Border Gateway Protocol (BGP), to bring down routing protocol
@@ -55,6 +55,7 @@
       </t>
       <t>
         This document defines a Subcode for the BGP Cease NOTIFICATION message
+	<xref target="RFC4271" format="default" sectionFormat="comma" section="6.7"/>,
         for when a BGP connection is being closed due to a BFD session going
         down.
       </t>
@@ -89,13 +90,18 @@
         three seconds.
       </t>
       <t>
-        If a BGP speaker desires to have its connections terminate faster
+        If a BGP speaker desires to have its connections terminate more quickly
         than the negotiated BGP Hold Timer can accommodate upon loss of
-        connectivity with a neighbor, the BGP speakers can rely upon BFD 
+        connectivity with a neighbor, the BFD protocol can be relied upon by BGP speakers
         to supply that faster detection.  When the BFD session state
         changes to Down, the BGP speaker terminates the connection with a
-        NOTIFICATION message sent to the neighbor, if possible, and then closes
+        Cease NOTIFICATION message sent to the neighbor, if possible, and then closes
         the TCP connection for the connection.
+      </t>
+      <t>
+	This document defines a subcode, "BFD Down", to be sent with the Cease
+	NOTIFICATION message that indicates the reason for this type of
+	connection termination.
       </t>
     </section>
     <section numbered="true" toc="default">
@@ -128,7 +134,7 @@
       </t>
       <t>
         When there is a total loss of connectivity between two BGP speakers, it
-        may not be possible for the Cease NOTIFICATION message to have been sent.
+        may not have been possible for the Cease NOTIFICATION message to have been sent.
         Even so, BGP speakers SHOULD provide this reason as part of their
         operational state.  Examples include bgpPeerLastError in the BGP MIB
         <xref target="RFC4273" format="default"/>, and "last-error" in 
@@ -155,9 +161,11 @@
         delete this note to IANA prior to publication.
       </t>
       <t>
-        IANA has assigned the value 10 from the BGP Cease
-        NOTIFICATION message subcodes registry with the Name "BFD Down", and a
-        Reference of this document.
+        IANA has assigned the value 10 from the
+	<eref target="https://www.iana.org/assignments/bgp-parameters/bgp-parameters.xhtml#bgp-parameters-8">
+	BGP Cease NOTIFICATION message subcodes registry
+	</eref>
+	with the Name "BFD Down", and a Reference to this document.
       </t>
     </section>
     <section numbered="true" toc="default">
@@ -180,13 +188,13 @@
         <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml"/>
         <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.4271.xml"/>
         <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.5880.xml"/>
+        <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.5882.xml"/>
         <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml"/>
         <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.8538.xml"/>
       </references>
       <references>
         <name>Informative References</name>
         <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.4273.xml"/>
-        <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.5882.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-idr-bgp-model.xml"/>
       </references>
     </references>
