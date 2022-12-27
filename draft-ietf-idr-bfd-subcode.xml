@@ -91,10 +91,10 @@
       <t>
         If a BGP speaker desires to have its connections terminate faster
         than the negotiated BGP Hold Timer can accommodate upon loss of
-        connectivity with a neighbor, the BGP speakers can rely upon BFD is
-        used to supply that faster detection.  When the BFD session state
+        connectivity with a neighbor, the BGP speakers can rely upon BFD 
+        to supply that faster detection.  When the BFD session state
         changes to Down, the BGP speaker terminates the connection with a
-        NOTIFICATION message sent to the neighbor, if possible, and then close
+        NOTIFICATION message sent to the neighbor, if possible, and then closes
         the TCP connection for the connection.
       </t>
     </section>
@@ -136,7 +136,7 @@
       </t>
       <t>
         When the procedures in <xref target="RFC8538" format="default"/> for sending a
-        NOTIFICATION message with a Cease Code and Hard Reset Subcode, and the
+        NOTIFICATION message with a Cease Code and Hard Reset Subcode are required, and the
         BGP connection is being terminated because BFD has gone Down, the BFD Down
         Subcode SHOULD be encapsulated in the Hard Reset's data portion of the
         NOTIFICATION message.
